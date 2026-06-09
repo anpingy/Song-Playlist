@@ -33,15 +33,6 @@ public class Playlist {
         System.out.println("Playlist '" + name + "' has been shuffled.");
     }
 
-    // Calculate total duration of the playlist
-    public int getTotalDuration() {
-        int total = 0;
-        for (Song song : songs) {
-            total += song.getDurationInSeconds();
-        }
-        return total;
-    }
-
     // Display all songs in the playlist
     public void displayPlaylist() {
         System.out.println("\n--- " + name + " Playlist ---");
@@ -52,6 +43,5 @@ public class Playlist {
         for (int i = 0; i < songs.size(); i++) {
             System.out.println((i + 1) + ". " + songs.get(i));
         }
-        System.out.println("Total Runtime: " + getTotalDuration() + " seconds.");
     }
 }
