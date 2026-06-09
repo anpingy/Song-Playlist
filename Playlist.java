@@ -18,6 +18,7 @@ public class Playlist {
         System.out.println("Added: " + song.getTitle());
     }
 
+    // Queue a song to play next (add to the front of the playlist)
     public void queueSong(Song song) {
         songs.add(0, song);
         System.out.println("Queued: " + song.getTitle());
@@ -39,6 +40,7 @@ public class Playlist {
         System.out.println("Playlist '" + name + "' has been shuffled.");
     }
 
+    //loop through the playlist indefinitely
     public void loopPlaylist() {
         System.out.println("Looping playlist '" + name + "'.");
         while (true) {
