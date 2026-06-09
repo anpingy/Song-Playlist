@@ -18,6 +18,11 @@ public class Playlist {
         System.out.println("Added: " + song.getTitle());
     }
 
+    public void queueSong(Song song) {
+        songs.add(0, song);
+        System.out.println("Queued: " + song.getTitle());
+    }
+
     // Remove a song by its index position
     public void removeSong(int index) {
         if (index >= 0 && index < songs.size()) {
