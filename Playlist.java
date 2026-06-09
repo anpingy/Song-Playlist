@@ -34,6 +34,16 @@ public class Playlist {
         System.out.println("Playlist '" + name + "' has been shuffled.");
     }
 
+    public void loopPlaylist() {
+        System.out.println("Looping playlist '" + name + "'.");
+        while (true) {
+            for (Song song : songs) {
+                System.out.println("Playing: " + song.getTitle());
+            }
+        }
+    }
+    
+
     // Display all songs in the playlist
     public void displayPlaylist() {
         System.out.println("\n--- " + name + " Playlist ---");
