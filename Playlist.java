@@ -13,7 +13,6 @@ public class Playlist {
         this.songs = new ArrayList<>();
     }
 
-
     // Add a song to the end of the playlist
     public void addSong(Song song) {
         songs.add(song);
