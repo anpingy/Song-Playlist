@@ -19,7 +19,6 @@ public class Playlist {
 
     // Play all songs in the playlist in order
     public void playPlaylist() {
-<<<<<<< HEAD
         new Thread(() -> {
             System.out.println("Playing playlist '" + name + "':");
             for (Song song : songs) {
@@ -28,7 +27,6 @@ public class Playlist {
                 music.play(); 
             }
         }).start();
-        
     String choice = scanner.nextLine();
         if (choice.equalsIgnoreCase("stop")) {
             music.stop();
@@ -37,25 +35,8 @@ public class Playlist {
     public void stopPlaylist() {
         System.out.println("Stopping playlist '" + name + "'.");
         music.stop();  
-=======
-        if (!songs.isEmpty()) {
-            Song song = songs.get(0); // Assuming the first song is to be played
-            Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-            music.play();  
-        }
     }
-    public void stopPlaylist() {
-        if (!songs.isEmpty()) {
-            Song currentSong = songs.get(0); // Assuming the first song is currently playing
-            Music music = new Music(currentSong.getTitle(), currentSong.getArtist(), currentSong.getFilePath());
-            System.out.println("Stopping the playlist.");
-            music.stop();
-        }else {
-            System.out.println("The playlist is empty. There is nothing to stop.");
->>>>>>> 3685d05ff4ed2d9a064d20038ff41b8c28350359
-        }
-    
-
+      
     // Add a song to the end of the playlist
     public void addSong(Song song) {
         songs.add(song);
