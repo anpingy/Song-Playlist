@@ -1,8 +1,12 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+import javax.swing.plaf.TreeUI;
 
 public class Playlist {
+    Scanner scanner = new Scanner(System.in);
+    public Music music;
     private String name;
     private ArrayList<Song> songs;
     public ArrayList<Integer> musicList = new ArrayList<>(List.of(1, 2, 3, 4, 5));
@@ -15,20 +19,25 @@ public class Playlist {
 
     // Play all songs in the playlist in order
     public void playPlaylist() {
-        System.out.println("Playing playlist '" + name + "':");
-        for (Song song : songs) {
-            System.out.println("Playing: " + song.getTitle());
-            Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-            music.play();  
+        new Thread(() -> {
+            System.out.println("Playing playlist '" + name + "':");
+            for (Song song : songs) {
+                System.out.println("Playing: " + song.getTitle());
+                Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
+                music.play(); 
+            }
+        }).start();
+        
+    String choice = scanner.nextLine();
+        if (choice.equalsIgnoreCase("stop")) {
+            music.stop();
         }
     }
     public void stopPlaylist() {
         System.out.println("Stopping playlist '" + name + "'.");
-        for (Song song : songs) {
-            Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-            music.stop();  
+        music.stop();  
         }
-    }
+    
 
     // Add a song to the end of the playlist
     public void addSong(Song song) {

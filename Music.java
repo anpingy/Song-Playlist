@@ -30,6 +30,11 @@ public class Music {
             clip.open(audioStream);
             clip.start();
             System.out.println("Playing: " + title + " by " + artist);
+            while (clip.isActive()) {
+                // Wait for the song to finish playing
+                Thread.sleep(100);
+            }
+            clip.close();
         } catch (Exception e) {
             System.out.println("Error playing the song: " + e.getMessage());
         }
