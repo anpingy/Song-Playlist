@@ -7,7 +7,7 @@ public class Main {
         Playlist playlist = new Playlist("My Playlist");
         playlist.displayPlaylist();
         while (true) {
-            System.out.println("Type 'add' to add a song, 'play' to play the playlist, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, 'stop' to stop the playlist, or 'exit' to quit:");
+            System.out.println("Type 'add' to add a song, 'play' to play the playlist, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, 'stop' to stop the playlist, 'show' to show the playlist, or 'exit' to quit:");
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("add")) {
                 System.out.println("Input the number to add songs to the playlist:");
@@ -44,6 +44,9 @@ public class Main {
             }
             if (command.equalsIgnoreCase("stop")) {
                 playlist.stopPlaylist();
+            }
+            if (command.equalsIgnoreCase("show")) {
+                playlist.displayPlaylist();
             }
             if (command.equalsIgnoreCase("remove")) {
                 System.out.println("Which song do you want to remove? (Enter the index number (starts at 0))");

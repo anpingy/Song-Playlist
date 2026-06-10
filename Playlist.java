@@ -20,7 +20,6 @@ public class Playlist {
     // Play all songs in the playlist in order
     public void playPlaylist() {
         new Thread(() -> {
-            System.out.println("Playing playlist '" + name + "':");
             for (Song song : songs) {
                 System.out.println("Playing: " + song.getTitle());
                 Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
