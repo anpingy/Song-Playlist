@@ -34,5 +34,16 @@ public class Music {
             System.out.println("Error playing the song: " + e.getMessage());
         }
     }
-
+    public void stop() {
+        try {
+            File audioFile = new File(filePath);
+            AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioStream);
+            clip.stop();
+            System.out.println("Stopped: " + title + " by " + artist);
+        } catch (Exception e) {
+            System.out.println("Error stopping the song: " + e.getMessage());
+        }
+    }
 }

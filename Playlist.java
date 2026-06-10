@@ -19,12 +19,14 @@ public class Playlist {
         for (Song song : songs) {
             System.out.println("Playing: " + song.getTitle());
             Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-            music.play();
-            while (clip.isRunning()) {
-                // Wait for the current song to finish
-                Thread.sleep(100);
-            }
-  
+            music.play();  
+        }
+    }
+    public void stopPlaylist() {
+        System.out.println("Stopping playlist '" + name + "'.");
+        for (Song song : songs) {
+            Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
+            music.stop();  
         }
     }
 

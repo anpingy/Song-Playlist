@@ -1,7 +1,7 @@
 public class Song {
     private String title;
     private String artist;
-    private String filePath; // Optional: used if you intend to play physical audio files
+    private String filePath; 
 
     // Constructor
     public Song(String title, String artist, String filePath) {
