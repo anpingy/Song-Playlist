@@ -22,6 +22,8 @@ public class Music {
         return artist;
     }
 
+
+
     public void play() {
         try {
             File audioFile = new File(filePath);
