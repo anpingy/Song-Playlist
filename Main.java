@@ -36,7 +36,8 @@ public class Main {
         String response = scanner.nextLine();
 
         if (response.equalsIgnoreCase("yes")) {
-            // Add more songs to the playlist
+            System.out.println("What song do you want to add?");
+            String songTitle = scanner.nextLine();
         }if (response.equalsIgnoreCase("no")) {
             System.out.println("Do you want to shuffle the playlist? (yes/no)");
             String shuffleResponse = scanner.nextLine();
