@@ -7,7 +7,7 @@ public class Main {
         Playlist playlist = new Playlist("My Playlist");
         playlist.displayPlaylist();
         while (true) {
-            System.out.println("Type 'add' to add a song, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, or 'exit' to quit:");
+            System.out.println("Type 'add' to add a song, 'play' to play the playlist, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, or 'exit' to quit:");
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("add")) {
                 System.out.println("Input the number to add songs to the playlist:");
@@ -19,7 +19,7 @@ public class Main {
                 int choice = scanner.nextInt();
                 scanner.nextLine(); // Consume the newline
                 if (choice == 1) {
-                playlist.addSong(new Song("Anytime, Always", "Wallows", "Anytime, Always by Wallows.wav"));
+                    playlist.addSong(new Song("Anytime, Always", "Wallows", "Anytime, Always by Wallows.wav"));
                 } else if (choice == 2) {
                     playlist.addSong(new Song("Buttons", "Lyn Lapid", "Buttons by Lyn Lapid.wav"));
                 } else if (choice == 3) {
@@ -32,6 +32,11 @@ public class Main {
                     System.out.println("Invalid choice!");
                 }
             }
+
+            if (command.equalsIgnoreCase("play")) {
+                playlist.playPlaylist();
+            }
+
             if (command.equalsIgnoreCase("shuffle")) {
                 playlist.shufflePlaylist();
             }
