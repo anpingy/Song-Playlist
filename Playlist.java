@@ -21,7 +21,6 @@ public class Playlist {
     public void playPlaylist() {
         new Thread(() -> {
             for (Song song : songs) {
-                System.out.println("Playing: " + song.getTitle());
                 Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
                 music.play(); 
             }
@@ -39,7 +38,6 @@ public class Playlist {
     // Add a song to the end of the playlist
     public void addSong(Song song) {
         songs.add(song);
-        System.out.println("Added: " + song.getTitle());
     }
 
     // Queue a song to play next (add to the front of the playlist)
