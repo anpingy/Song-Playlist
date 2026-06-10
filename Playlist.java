@@ -15,18 +15,20 @@ public class Playlist {
 
     // Play all songs in the playlist in order
     public void playPlaylist() {
-        System.out.println("Playing playlist '" + name + "':");
-        for (Song song : songs) {
-            System.out.println("Playing: " + song.getTitle());
+        if (!songs.isEmpty()) {
+            Song song = songs.get(0); // Assuming the first song is to be played
             Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
             music.play();  
         }
     }
     public void stopPlaylist() {
-        System.out.println("Stopping playlist '" + name + "'.");
-        for (Song song : songs) {
-            Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-            music.stop();  
+        if (!songs.isEmpty()) {
+            Song currentSong = songs.get(0); // Assuming the first song is currently playing
+            Music music = new Music(currentSong.getTitle(), currentSong.getArtist(), currentSong.getFilePath());
+            System.out.println("Stopping the playlist.");
+            music.stop();
+        }else {
+            System.out.println("The playlist is empty. There is nothing to stop.");
         }
     }
 

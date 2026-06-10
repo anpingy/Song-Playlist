@@ -36,7 +36,6 @@ public class Main {
             if (command.equalsIgnoreCase("play")) {
                 playlist.playPlaylist();
             }
-
             if (command.equalsIgnoreCase("shuffle")) {
                 playlist.shufflePlaylist();
             }
