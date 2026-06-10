@@ -5,8 +5,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Playlist playlist = new Playlist("My Playlist");
-        Music music1 = new Music("Buttons", "Lyn Lapid", "Buttons by Lyn Lapid.wav");
-        music1.play();
         playlist.displayPlaylist();
         while (true) {
             System.out.println("Type 'add' to add a song, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, or 'exit' to quit:");
@@ -41,7 +39,7 @@ public class Main {
                 playlist.loopPlaylist();
             }
             if (command.equalsIgnoreCase("remove")) {
-                System.out.println("Which song do you want to remove? (Enter the index number)");
+                System.out.println("Which song do you want to remove? (Enter the index number (starts at 0))");
                 playlist.displayPlaylist();
                 int index = scanner.nextInt();
                 scanner.nextLine(); // Consume the newline
