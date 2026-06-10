@@ -1,16 +1,18 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class Playlist {
     private String name;
     private ArrayList<Song> songs;
+    public ArrayList<Integer> musicList = new ArrayList<>(List.of(1, 2, 3, 4, 5));
 
     // Constructor
     public Playlist(String name) {
         this.name = name;
         this.songs = new ArrayList<>();
-        
     }
+
 
     // Add a song to the end of the playlist
     public void addSong(Song song) {
