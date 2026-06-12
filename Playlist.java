@@ -19,20 +19,22 @@ public class Playlist {
 
     // Play all songs in the playlist in order
     public void playPlaylist() {
-        new Thread(() -> {
+        Thread t = new Thread(() -> {
             for (Song song : songs) {
                 Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-                music.play(); 
+                music.play();
             }
-        }).start();
-    String choice = scanner.nextLine();
+        });
+        t.start();
+        String choice = scanner.nextLine();
         if (choice.equalsIgnoreCase("stop")) {
-            music.stop();
+            // music.stop();
+            t.interrupt();
         }
     }
-    public void stopPlaylist() {
-        System.out.println("Stopping playlist '" + name + "'.");
-        music.stop();  
+    public void skipPlaylist() {
+        System.out.println("Skipping current song.");
+        music.skip();  
     }
       
     // Add a song to the end of the playlist
@@ -71,11 +73,20 @@ public class Playlist {
             }
         }
     }
+    public void searchSong(String title) {
+        for (Song song : songs) {
+            if (song.getTitle().equalsIgnoreCase(title)) {
+                System.out.println("Found: " + song);
+                return;
+            }
+        }
+        System.out.println("Song not found in the playlist.");
+    }
     
 
     // Display all songs in the playlist
     public void displayPlaylist() {
-        System.out.println("\n--- " + name + " Playlist ---");
+        System.out.println("\n--- " + name + " ---");
         if (songs.isEmpty()) {
             System.out.println("The playlist is empty.");
             return;
