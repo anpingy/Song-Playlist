@@ -55,7 +55,7 @@ public class Music {
                 Thread.sleep(100); // Prevent busy-waiting
             }
         } catch (Exception e) {
-            // System.out.println("Error playing the song: " + e.getMessage());
+            System.out.println("Error playing the song: " + e.getMessage());
         }
     }
     public void skip() {

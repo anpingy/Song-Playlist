@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
-import javax.swing.plaf.TreeUI;
 
 public class Playlist {
     Scanner scanner = new Scanner(System.in);
     public Music music;
     private String name;
     private ArrayList<Song> songs;
-    public ArrayList<Integer> musicList = new ArrayList<>(List.of(1, 2, 3, 4, 5));
 
     // Constructor
     public Playlist(String name) {
@@ -82,7 +79,6 @@ public class Playlist {
         }
         System.out.println("Song not found in the playlist.");
     }
-    
 
     // Display all songs in the playlist
     public void displayPlaylist() {
