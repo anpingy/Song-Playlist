@@ -11,9 +11,12 @@ public class Song {
     }
     // Getters
     public String getTitle() { 
-        return title; }
+        return title; 
+    }
     public String getArtist() { 
-        return artist; }
+        return artist;
+    }
     public String getFilePath() { 
-        return filePath; }
+        return filePath; 
+    }
 }

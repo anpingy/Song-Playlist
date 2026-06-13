@@ -25,11 +25,6 @@ public class Playlist {
             }
         });
         t.start();
-        String choice = scanner.nextLine();
-        if (choice.equalsIgnoreCase("skip")) {
-            // music.stop();
-            t.interrupt();
-        }
     }
     public void skipPlaylist() {
         System.out.println("Skipping song.");
@@ -86,7 +81,7 @@ public class Playlist {
             return;
         }
         for (int i = 0; i < songs.size(); i++) {
-            System.out.println((i + 1) + ". " + songs.get(i).getTitle());
+            System.out.println((i + 1) + ". " + songs.get(i).getTitle() + " by " + songs.get(i).getArtist());
         }
     }
 }

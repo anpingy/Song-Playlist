@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
@@ -16,20 +17,32 @@ public class Main {
                 System.out.println("3. Downer by Nirvana");
                 System.out.println("4. Fell In Love With a Girl by The White Stripes");
                 System.out.println("5. For No One by The Beatles");
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline
-                if (choice == 1) {
-                    playlist.addSong(new Song("Anytime, Always", "Wallows", "Anytime, Always by Wallows.wav"));
-                } else if (choice == 2) {
-                    playlist.addSong(new Song("Buttons", "Lyn Lapid", "Buttons by Lyn Lapid.wav"));
-                } else if (choice == 3) {
-                    playlist.addSong(new Song("Downer", "Nirvana", "Downer by Nirvana.wav"));
-                } else if (choice == 4) {
-                    playlist.addSong(new Song("Fell In Love With a Girl", "The White Stripes", "Fell In Love With a Girl by The White Stripes.wav"));
-                } else if (choice == 5) {
-                    playlist.addSong(new Song("For No One", "The Beatles", "For No One by The Beatles.wav"));
-                } else {
-                    System.out.println("Invalid choice!");
+                while (true) {
+                    try {
+                    int choice = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline
+                        if (choice == 1) {
+                            playlist.addSong(new Song("Anytime, Always", "Wallows", "Anytime, Always by Wallows.wav"));
+                            break;
+                        } else if (choice == 2) {
+                            playlist.addSong(new Song("Buttons", "Lyn Lapid", "Buttons by Lyn Lapid.wav"));
+                            break;
+                        } else if (choice == 3) {
+                            playlist.addSong(new Song("Downer", "Nirvana", "Downer by Nirvana.wav"));
+                            break;
+                        } else if (choice == 4) {
+                            playlist.addSong(new Song("Fell In Love With a Girl", "The White Stripes", "Fell In Love With a Girl by The White Stripes.wav"));
+                            break;
+                        } else if (choice == 5) {
+                            playlist.addSong(new Song("For No One", "The Beatles", "For No One by The Beatles.wav"));
+                            break;
+                        } else {
+                            System.out.println("Invalid choice!");
+                        }
+                    } catch (InputMismatchException e){
+                        System.out.println("Invalid input! Please enter a number.");
+                        scanner.nextLine(); // Consume the invalid input
+                    }
                 }
             }
             if (command.equalsIgnoreCase("play")) {

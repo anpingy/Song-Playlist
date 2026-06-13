@@ -43,10 +43,6 @@ public class Music {
 
     public void play() {
         try {
-            // File audioFile = new File(filePath);
-            // AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-            // Clip clip = AudioSystem.getClip();
-            // clip.open(audioStream);
             currentSong.start();
             while (currentSong.isActive() && !Thread.currentThread().isInterrupted()) {
                 // Wait for the song to finish playing
@@ -65,17 +61,5 @@ public class Music {
         currentSong.stop();
         currentSong.close();
     }
-      
-        // try {
-        //     currentSong.stop();
-        //     // File audioFile = new File(filePath);
-        //     // AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-        //     // Clip clip = AudioSystem.getClip();
-        //     // clip.open(audioStream);
-        //     // clip.stop();
-        //     System.out.println("Stopped: " + title + " by " + artist);
-        // } catch (Exception e) {
-        //     System.out.println("Error stopping the song: " + e.getMessage());
-        // }
     }
 }
