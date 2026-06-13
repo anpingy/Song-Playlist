@@ -7,7 +7,7 @@ public class Playlist {
     Scanner scanner = new Scanner(System.in);
     public Music music;
     private String name;
-    private ArrayList<Song> songs;
+    public ArrayList<Song> songs;
     private Thread t;
     public static boolean indexNumber = true;
 

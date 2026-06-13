@@ -59,7 +59,12 @@ public class Main {
                 playlist.displayPlaylist();
             }
             if (command.equalsIgnoreCase("remove")) {
+                if (playlist.songs.isEmpty()) {
+                    System.out.println("The playlist is empty. No songs to remove.");
+                    continue;
+                }
                 System.out.println("Which song do you want to remove? (Enter the track number (number before the song title)");
+                playlist.indexNumber = true;
                 playlist.displayPlaylist();
                     while (playlist.indexNumber == true) {
                             int index = scanner.nextInt();
