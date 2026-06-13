@@ -80,13 +80,13 @@ public class Playlist {
 
     // Display all songs in the playlist
     public void displayPlaylist() {
-        System.out.println("\n--- " + name + " Playlist ---");
+        System.out.println("\n--- My Playlist ---");
         if (songs.isEmpty()) {
             System.out.println("The playlist is empty.");
             return;
         }
         for (int i = 0; i < songs.size(); i++) {
-            System.out.println((i + 1) + ". " + songs.get(i));
+            System.out.println((i + 1) + ". " + songs.get(i).getTitle());
         }
     }
 }

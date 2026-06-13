@@ -58,12 +58,12 @@ public class Music {
     }
     public void skip() {
           try {
-    while (currentSong.isActive() && !Thread.currentThread().isInterrupted()) {
+        while (currentSong.isActive() && !Thread.currentThread().isInterrupted()) {
         System.out.print(""); // Prevent busy-waiting
     }
-    } finally {
-    currentSong.stop();
-    currentSong.close();
+        } finally {
+        currentSong.stop();
+        currentSong.close();
     }
       
         // try {
