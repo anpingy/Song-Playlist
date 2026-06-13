@@ -24,7 +24,7 @@ public class Playlist {
         });
         t.start();
         String choice = scanner.nextLine();
-        if (choice.equalsIgnoreCase("stop")) {
+        if (choice.equalsIgnoreCase("skip")) {
             // music.stop();
             t.interrupt();
         }
