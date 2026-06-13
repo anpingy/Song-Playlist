@@ -25,11 +25,6 @@ public class Playlist {
             }
         });
         t.start();
-        String choice = scanner.nextLine();
-        if (choice.equalsIgnoreCase("skip")) {
-            // music.stop();
-            t.interrupt();
-        }
     }
     public void skipPlaylist() {
         System.out.println("Skipping song.");
@@ -38,7 +33,12 @@ public class Playlist {
      
     // Add a song to the end of the playlist
     public void addSong(Song song) {
+        try {
         songs.add(song);
+        } catch (Exception e) {
+            System.out.println("cannot retype add");
+        }
+
     }
 
 
