@@ -48,12 +48,12 @@ public class Playlist {
 
     // Remove a song by its index position
     public void removeSong(int index) {
-            if (index >= 0 && index < songs.size()) {
-                System.out.println("Removed: " + songs.get(index).getTitle());
-                songs.remove(index);
+            if (index-1 >= 0 && index-1 < songs.size()) {
+                System.out.println("Removed: " + songs.get(index-1).getTitle());
+                songs.remove(index-1);
                 indexNumber = false;
             } else {
-                System.out.println("Invalid track index! Please enter a valid index:");
+                System.out.println("Invalid track number! Please enter a valid track number:");
         }
     }
 

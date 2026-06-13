@@ -59,7 +59,7 @@ public class Main {
                 playlist.displayPlaylist();
             }
             if (command.equalsIgnoreCase("remove")) {
-                System.out.println("Which song do you want to remove? (Enter the index number (starts at 0))");
+                System.out.println("Which song do you want to remove? (Enter the track number (number before the song title)");
                 playlist.displayPlaylist();
                     while (playlist.indexNumber == true) {
                             int index = scanner.nextInt();
