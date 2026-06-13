@@ -9,6 +9,8 @@ public class Playlist {
     private String name;
     private ArrayList<Song> songs;
     private Thread t;
+    public static boolean indexNumber = true;
+
    
     // Constructor
     public Playlist(String name) {
@@ -46,11 +48,12 @@ public class Playlist {
 
     // Remove a song by its index position
     public void removeSong(int index) {
-        if (index >= 0 && index < songs.size()) {
-            System.out.println("Removed: " + songs.get(index).getTitle());
-            songs.remove(index);
-        } else {
-            System.out.println("Invalid track index!");
+            if (index >= 0 && index < songs.size()) {
+                System.out.println("Removed: " + songs.get(index).getTitle());
+                songs.remove(index);
+                indexNumber = false;
+            } else {
+                System.out.println("Invalid track index! Please enter a valid index:");
         }
     }
 

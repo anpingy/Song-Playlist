@@ -61,9 +61,11 @@ public class Main {
             if (command.equalsIgnoreCase("remove")) {
                 System.out.println("Which song do you want to remove? (Enter the index number (starts at 0))");
                 playlist.displayPlaylist();
-                int index = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline
-                playlist.removeSong(index);
+                    while (playlist.indexNumber == true) {
+                            int index = scanner.nextInt();
+                            scanner.nextLine(); // Consume the newline
+                            playlist.removeSong(index);
+                    }
             }
             if (command.equalsIgnoreCase("queue")) {
                 System.out.println("Input the number to queue songs to the playlist:");
