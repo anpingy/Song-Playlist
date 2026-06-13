@@ -2,25 +2,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+
 public class Playlist {
     Scanner scanner = new Scanner(System.in);
     public Music music;
     private String name;
     private ArrayList<Song> songs;
     private Thread t;
-    
+   
     // Constructor
     public Playlist(String name) {
         this.name = name;
         this.songs = new ArrayList<>();
     }
 
+
     // Play all songs in the playlist in order
     public void playPlaylist() {
         t = new Thread(() -> {
             for (Song song : songs) {
                 Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-                music.play(); 
+                music.play();
             }
         });
         t.start();
@@ -34,17 +36,19 @@ public class Playlist {
         System.out.println("Skipping song.");
         t.interrupt();  
     }
-      
+     
     // Add a song to the end of the playlist
     public void addSong(Song song) {
         songs.add(song);
     }
+
 
     // Queue a song to play next (add to the front of the playlist)
     public void queueSong(Song song) {
         songs.add(0, song);
         System.out.println("Queued: " + song.getTitle());
     }
+
 
     // Remove a song by its index position
     public void removeSong(int index) {
@@ -56,11 +60,13 @@ public class Playlist {
         }
     }
 
+
     // Shuffle all songs randomly
     public void shufflePlaylist() {
         Collections.shuffle(songs);
         System.out.println("Playlist '" + name + "' has been shuffled.");
     }
+
 
     //loop through the playlist indefinitely
     public void loopPlaylist() {
@@ -71,6 +77,7 @@ public class Playlist {
             }
         }
     }
+
 
     // Display all songs in the playlist
     public void displayPlaylist() {
@@ -84,3 +91,6 @@ public class Playlist {
         }
     }
 }
+
+
+
