@@ -33,7 +33,12 @@ public class Playlist {
      
     // Add a song to the end of the playlist
     public void addSong(Song song) {
+        try {
         songs.add(song);
+        } catch (Exception e) {
+            System.out.println("cannot retype add");
+        }
+
     }
 
 
