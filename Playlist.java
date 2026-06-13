@@ -16,7 +16,6 @@ public class Playlist {
         this.songs = new ArrayList<>();
     }
 
-
     // Play all songs in the playlist in order
     public void playPlaylist() {
         t = new Thread(() -> {
