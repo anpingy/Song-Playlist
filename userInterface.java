@@ -21,5 +21,9 @@ public class userInterface {
 
         // 4. Make the window visible on screen
         frame.setVisible(true);
+
+        button.addActionListener(e -> {
+            System.out.println("Button was pressed!");
+        });
     }
 }
