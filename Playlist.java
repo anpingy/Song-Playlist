@@ -33,12 +33,7 @@ public class Playlist {
      
     // Add a song to the end of the playlist
     public void addSong(Song song) {
-        try {
         songs.add(song);
-        } catch (Exception e) {
-            System.out.println("cannot retype add");
-        }
-
     }
 
 
@@ -86,7 +81,7 @@ public class Playlist {
             return;
         }
         for (int i = 0; i < songs.size(); i++) {
-            System.out.println((i + 1) + ". " + songs.get(i).getTitle() + " by " + songs.get(i).getArtist());
+            System.out.println((i + 1) + ". " + songs.get(i).getTitle());
         }
     }
 }
