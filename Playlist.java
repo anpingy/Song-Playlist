@@ -7,7 +7,8 @@ public class Playlist {
     public Music music;
     private String name;
     private ArrayList<Song> songs;
-
+    private Thread t;
+    
     // Constructor
     public Playlist(String name) {
         this.name = name;
@@ -16,10 +17,10 @@ public class Playlist {
 
     // Play all songs in the playlist in order
     public void playPlaylist() {
-        Thread t = new Thread(() -> {
+        t = new Thread(() -> {
             for (Song song : songs) {
                 Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
-                music.play();
+                music.play(); 
             }
         });
         t.start();
@@ -30,8 +31,8 @@ public class Playlist {
         }
     }
     public void skipPlaylist() {
-        System.out.println("Skipping current song.");
-        music.skip();  
+        System.out.println("Skipping song.");
+        t.interrupt();  
     }
       
     // Add a song to the end of the playlist
@@ -70,19 +71,10 @@ public class Playlist {
             }
         }
     }
-    public void searchSong(String title) {
-        for (Song song : songs) {
-            if (song.getTitle().equalsIgnoreCase(title)) {
-                System.out.println("Found: " + song);
-                return;
-            }
-        }
-        System.out.println("Song not found in the playlist.");
-    }
 
     // Display all songs in the playlist
     public void displayPlaylist() {
-        System.out.println("\n--- " + name + " ---");
+        System.out.println("\n--- " + name + " Playlist ---");
         if (songs.isEmpty()) {
             System.out.println("The playlist is empty.");
             return;

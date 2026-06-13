@@ -1,12 +1,13 @@
 import java.util.Scanner;
 
+
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Playlist playlist = new Playlist("My Playlist");
         playlist.displayPlaylist();
         while (true) {
-            System.out.println("Type 'add' to add a song, 'play' to play the playlist, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, 'skip' to skip the current song, 'show' to show the playlist, 'search' to check if a song is in the playlist, or 'exit' to quit:");
+            System.out.println("Type 'add' to add a song, 'play' to play the playlist, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, 'skip' to skip the current song, 'show' to show the playlist, or 'exit' to quit:");
             String command = scanner.nextLine();
             if (command.equalsIgnoreCase("add")) {
                 System.out.println("Input the number to add songs to the playlist:");
@@ -53,11 +54,6 @@ public class Main {
                 int index = scanner.nextInt();
                 scanner.nextLine(); // Consume the newline
                 playlist.removeSong(index);
-            }
-            if (command.equalsIgnoreCase("search")) {
-                System.out.println("Enter the title of the song you want to search for:");
-                String title = scanner.nextLine();
-                playlist.searchSong(title);
             }
             if (command.equalsIgnoreCase("queue")) {
                 System.out.println("Input the number to queue songs to the playlist:");

@@ -11,11 +11,10 @@ public class Song {
     }
 
     // Getters
-    public String getTitle() { return title; }
-    public String getArtist() { return artist; }
-    public String getFilePath() { return filePath; }
-
-    public String toString() {
-        return "'" + title + "' by " + artist;
-    }
+    public String getTitle() { 
+        return title; }
+    public String getArtist() { 
+        return artist; }
+    public String getFilePath() { 
+        return filePath; }
 }

@@ -44,40 +44,13 @@ public class Music {
 
     public void play() {
         try {
-            // File audioFile = new File(filePath);
-            // AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-            // Clip clip = AudioSystem.getClip();
-            // clip.open(audioStream);
             currentSong.start();
-            System.out.println("Playing: " + title + " by " + artist);
             while (currentSong.isActive() && !Thread.currentThread().isInterrupted()) {
                 // Wait for the song to finish playing
                 Thread.sleep(100); // Prevent busy-waiting
             }
         } catch (Exception e) {
-            System.out.println("Error playing the song: " + e.getMessage());
+            // System.out.println("Error playing the song: " + e.getMessage());
         }
-    }
-    public void skip() {
-          try {
-    while (currentSong.isActive() && !Thread.currentThread().isInterrupted()) {
-        System.out.print(""); // Prevent busy-waiting
-    }
-    } finally {
-    currentSong.stop();
-    currentSong.close();
-    }
-      
-        // try {
-        //     currentSong.stop();
-        //     // File audioFile = new File(filePath);
-        //     // AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);
-        //     // Clip clip = AudioSystem.getClip();
-        //     // clip.open(audioStream);
-        //     // clip.stop();
-        //     System.out.println("Stopped: " + title + " by " + artist);
-        // } catch (Exception e) {
-        //     System.out.println("Error stopping the song: " + e.getMessage());
-        // }
     }
 }
