@@ -19,13 +19,26 @@ public class userInterface extends JFrame {
         JButton showButton    = new JButton("Show");
         JButton shuffleButton = new JButton("Shuffle");
         JButton skipButton    = new JButton("Skip");
-        JButton loopButton    = new JButton("Loop");
         JButton addButton     = new JButton("Add Song");
         JButton queueButton   = new JButton("Queue Song");
         JButton removeButton  = new JButton("Remove Song");
 
+        playButton.setVisible(false);
+        shuffleButton.setVisible(false);
+        skipButton.setVisible(false);
+        queueButton.setVisible(false);
+        removeButton.setVisible(false);
+
+
         // PLAY
-        playButton.addActionListener(e -> playlist.playPlaylist());
+    playButton.addActionListener(e -> {
+        playlist.playPlaylist();
+        if (playlist.songs.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "The playlist is empty.", "Play", JOptionPane.WARNING_MESSAGE);
+        } else {
+            playButton.setVisible(false);
+        }
+    });
 
         // SHOW
         showButton.addActionListener(e -> {
@@ -51,23 +64,16 @@ public class userInterface extends JFrame {
         // SKIP
         skipButton.addActionListener(e -> playlist.skipPlaylist());
 
-        // LOOP
-        loopButton.addActionListener(e -> {
-            int confirm = JOptionPane.showConfirmDialog(
-                this,
-                "Start looping the playlist? (Close the app to stop)",
-                "Loop",
-                JOptionPane.YES_NO_OPTION
-            );
-            if (confirm == JOptionPane.YES_OPTION) {
-                new Thread(() -> playlist.loopPlaylist()).start();
-            }
-        });
 
         // ADD SONG
         addButton.addActionListener(e -> {
             Song chosen = pickSong("Add Song", "Choose a song to add:");
             if (chosen != null) {
+                playButton.setVisible(true);
+                shuffleButton.setVisible(true);
+                skipButton.setVisible(true);
+                queueButton.setVisible(true);
+                removeButton.setVisible(true);
                 playlist.addSong(chosen);
                 JOptionPane.showMessageDialog(this, "Added: " + chosen.getTitle(), "Add Song", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -75,11 +81,22 @@ public class userInterface extends JFrame {
 
         // QUEUE SONG
         queueButton.addActionListener(e -> {
-            Song chosen = pickSong("Queue Song", "Choose a song to play next:");
-            if (chosen != null) {
-                playlist.queueSong(chosen);
-                JOptionPane.showMessageDialog(this, "Queued: " + chosen.getTitle(), "Queue Song", JOptionPane.INFORMATION_MESSAGE);
+            if (playlist.songs.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "The playlist is empty.", "Queue Song", JOptionPane.WARNING_MESSAGE);
+                return;
             }
+            String[] titles = new String[playlist.songs.size()];
+            for (int i = 0; i < playlist.songs.size(); i++) {
+                titles[i] = (i + 1) + ". " + playlist.songs.get(i).getTitle();
+            }
+            String chosen = (String) JOptionPane.showInputDialog(this, "Choose a song to play next:", "Queue Song", JOptionPane.QUESTION_MESSAGE, null, titles, titles[0]);
+            if (chosen == null) {
+                return;
+            }
+            int index = Integer.parseInt(chosen.split("\\.")[0]) - 1;
+            Song song = playlist.songs.get(index);
+            playlist.queueSong(song);
+            JOptionPane.showMessageDialog(this, "Queued: " + song.getTitle(), "Queue Song", JOptionPane.INFORMATION_MESSAGE);
         });
 
         // REMOVE SONG
@@ -111,7 +128,6 @@ public class userInterface extends JFrame {
         add(playButton);
         add(skipButton);
         add(shuffleButton);
-        add(loopButton);
         add(addButton);
         add(queueButton);
         add(removeButton);

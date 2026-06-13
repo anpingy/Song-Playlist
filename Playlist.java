@@ -65,17 +65,6 @@ public class Playlist {
     }
 
 
-    //loop through the playlist indefinitely
-    public void loopPlaylist() {
-        System.out.println("Looping playlist '" + name + "'.");
-        while (true) {
-            for (Song song : songs) {
-                System.out.println("Playing: " + song.getTitle());
-            }
-        }
-    }
-
-
     // Display all songs in the playlist
     public void displayPlaylist() {
         System.out.println("\n--- My Playlist ---");
