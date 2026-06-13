@@ -14,7 +14,6 @@ public class Music {
         this.title = title;
         this.artist = artist;
         this.filePath = filePath;
-
         try {
             File audioFile = new File(filePath);
             AudioInputStream audioStream = AudioSystem.getAudioInputStream(audioFile);

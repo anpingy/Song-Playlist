@@ -9,7 +9,6 @@ public class Song {
         this.artist = artist;
         this.filePath = filePath;
     }
-
     // Getters
     public String getTitle() { 
         return title; }

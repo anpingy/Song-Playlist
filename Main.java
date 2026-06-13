@@ -32,7 +32,6 @@ public class Main {
                     System.out.println("Invalid choice!");
                 }
             }
-
             if (command.equalsIgnoreCase("play")) {
                 playlist.playPlaylist();
             }
