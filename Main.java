@@ -4,12 +4,30 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         Playlist playlist = new Playlist("My Playlist");
         playlist.displayPlaylist();
+
+        // Start GUI (connected to SAME playlist)
+        new userInterface(playlist);
+
+        // Optional: keep CLI running too
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("CLI still running...");
+            String command = scanner.nextLine();
+
+            if (command.equalsIgnoreCase("play")) {
+                playlist.playPlaylist();
+            }
+
+            if (command.equalsIgnoreCase("show")) {
+                playlist.displayPlaylist();
+            }
+        
+
         while (true) {
             System.out.println("Type 'add' to add a song, 'play' to play the playlist, 'queue' to queue a song, 'remove' to remove a song, 'shuffle' to shuffle the playlist, 'loop' to loop the playlist, 'skip' to skip the current song, 'show' to show the playlist, or 'exit' to quit:");
-            String command = scanner.nextLine();
             if (command.equalsIgnoreCase("add")) {
                 System.out.println("Input the number to add songs to the playlist:");
                 System.out.println("1. Anytime, Always by Wallows");
@@ -113,4 +131,6 @@ public class Main {
             }
         }
     }
+}
+
 }
