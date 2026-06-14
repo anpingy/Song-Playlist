@@ -4,6 +4,7 @@ import javax.swing.*;
 public class userInterface extends JFrame {
 
     private Playlist playlist;
+    private boolean empty = true;
 
     public userInterface(Playlist playlist) {
         this.playlist = playlist;
@@ -69,7 +70,10 @@ public class userInterface extends JFrame {
         addButton.addActionListener(e -> {
             Song chosen = pickSong("Add Song", "Choose a song to add:");
             if (chosen != null) {
-                playButton.setVisible(true);
+                if (empty) {
+                    empty = false;
+                    playButton.setVisible(true);
+                }
                 shuffleButton.setVisible(true);
                 skipButton.setVisible(true);
                 queueButton.setVisible(true);
