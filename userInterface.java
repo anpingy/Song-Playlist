@@ -23,6 +23,7 @@ public class userInterface extends JFrame {
         JButton addButton     = new JButton("Add Song");
         JButton queueButton   = new JButton("Queue Song");
         JButton removeButton  = new JButton("Remove Song");
+        JButton exitButton    = new JButton("Exit");
 
         playButton.setVisible(false);
         shuffleButton.setVisible(false);
@@ -127,7 +128,7 @@ public class userInterface extends JFrame {
             playlist.removeSong(index);
             JOptionPane.showMessageDialog(this, "Removed track " + index, "Remove Song", JOptionPane.INFORMATION_MESSAGE);
         });
-
+        exitButton.addActionListener(e -> System.exit(0));
         add(label);
         add(playButton);
         add(skipButton);
@@ -136,6 +137,7 @@ public class userInterface extends JFrame {
         add(queueButton);
         add(removeButton);
         add(showButton);
+        add(exitButton);
 
         setVisible(true);
     }
