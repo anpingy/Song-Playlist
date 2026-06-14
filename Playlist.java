@@ -11,6 +11,7 @@ public class Playlist {
     public ArrayList<Song> songs;
     private Thread t;
     public static boolean indexNumber = true;
+    private int currentIndex = 0;
 
     // Constructor
     public Playlist(String name) {
@@ -20,15 +21,19 @@ public class Playlist {
 
     // Play all songs in the playlist in order
     public void playPlaylist() {
+        currentIndex = 0;
         t = new Thread(() -> {
-            for (int i = 0; i < songs.size(); i++) {
-                Song song = songs.get(i);
+            while (currentIndex < songs.size()) {
+                Thread.interrupted(); // clears interrupted flag so loop continues after skip
+                Song song = songs.get(currentIndex);
                 Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
                 music.play();
+                currentIndex++;
             }
         });
         t.start();
     }
+
     public void skipPlaylist() {
         System.out.println("Skipping song.");
         t.interrupt();  
@@ -40,7 +45,7 @@ public class Playlist {
     }
     // Queue a song to play next (add to the front of the playlist)
     public void queueSong(Song song) {
-        songs.add(0, song);
+        songs.add(currentIndex + 1, song);
         System.out.println("Queued: " + song.getTitle());
     }
 
