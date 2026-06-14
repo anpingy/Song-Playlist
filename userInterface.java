@@ -23,6 +23,7 @@ public class userInterface extends JFrame {
         JButton addButton     = new JButton("Add Song");
         JButton queueButton   = new JButton("Queue Song");
         JButton removeButton  = new JButton("Remove Song");
+        JButton searchButton  = new JButton("Search Song");
         JButton exitButton    = new JButton("Exit");
 
         playButton.setVisible(false);
@@ -30,7 +31,7 @@ public class userInterface extends JFrame {
         skipButton.setVisible(false);
         queueButton.setVisible(false);
         removeButton.setVisible(false);
-
+        searchButton.setVisible(false);
 
         // PLAY
     playButton.addActionListener(e -> {
@@ -79,6 +80,7 @@ public class userInterface extends JFrame {
                 skipButton.setVisible(true);
                 queueButton.setVisible(true);
                 removeButton.setVisible(true);
+                searchButton.setVisible(true);
                 playlist.addSong(chosen);
                 JOptionPane.showMessageDialog(this, "Added: " + chosen.getTitle(), "Add Song", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -86,24 +88,32 @@ public class userInterface extends JFrame {
 
         // QUEUE SONG
         queueButton.addActionListener(e -> {
-            if (playlist.songs.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "The playlist is empty.", "Queue Song", JOptionPane.WARNING_MESSAGE);
-                return;
+            Song chosen = pickSong("Queue Song", "Choose a song to queue:");
+            if (chosen != null) {
+                playlist.queueSong(chosen);
+                JOptionPane.showMessageDialog(this, "Queued: " + chosen.getTitle(), "Queue Song", JOptionPane.INFORMATION_MESSAGE);
             }
-            String[] titles = new String[playlist.songs.size()];
-            for (int i = 0; i < playlist.songs.size(); i++) {
-                titles[i] = (i + 1) + ". " + playlist.songs.get(i).getTitle();
-            }
-            String chosen = (String) JOptionPane.showInputDialog(this, "Choose a song to play next:", "Queue Song", JOptionPane.QUESTION_MESSAGE, null, titles, titles[0]);
-            if (chosen == null) {
-                return;
-            }
-            int index = Integer.parseInt(chosen.split("\\.")[0]) - 1;
-            Song song = playlist.songs.get(index);
-            playlist.queueSong(song);
-            JOptionPane.showMessageDialog(this, "Queued: " + song.getTitle(), "Queue Song", JOptionPane.INFORMATION_MESSAGE);
         });
 
+        //Search Song
+
+        searchButton.addActionListener(e -> {
+            String searchTitle = JOptionPane.showInputDialog(this, "Confirm if the song exists in your playlist:", "Search Song", JOptionPane.QUESTION_MESSAGE);
+                if (searchTitle != null) {
+                    boolean found = false;
+                    for (int i = 0; i < playlist.songs.size(); i++) {
+                        Song song = playlist.songs.get(i);
+                        if (song.getTitle().equalsIgnoreCase(searchTitle)) {
+                            JOptionPane.showMessageDialog(this, "Found: " + song.getTitle() + " by " + song.getArtist(), "Search Result", JOptionPane.INFORMATION_MESSAGE);
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (!found) {
+                        JOptionPane.showMessageDialog(this, "Song not found in the playlist.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+        });
         // REMOVE SONG
         removeButton.addActionListener(e -> {
             if (playlist.songs.isEmpty()) {
@@ -137,6 +147,7 @@ public class userInterface extends JFrame {
         add(queueButton);
         add(removeButton);
         add(showButton);
+        add(searchButton);
         add(exitButton);
 
         setVisible(true);

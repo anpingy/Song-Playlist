@@ -3,6 +3,7 @@ import java.util.Collections;
 import java.util.Scanner;
 
 
+
 public class Playlist {
     Scanner scanner = new Scanner(System.in);
     public Music music;
@@ -11,7 +12,6 @@ public class Playlist {
     private Thread t;
     public static boolean indexNumber = true;
 
-   
     // Constructor
     public Playlist(String name) {
         this.name = name;
@@ -21,7 +21,8 @@ public class Playlist {
     // Play all songs in the playlist in order
     public void playPlaylist() {
         t = new Thread(() -> {
-            for (Song song : songs) {
+            for (int i = 0; i < songs.size(); i++) {
+                Song song = songs.get(i);
                 Music music = new Music(song.getTitle(), song.getArtist(), song.getFilePath());
                 music.play();
             }
@@ -37,8 +38,6 @@ public class Playlist {
     public void addSong(Song song) {
         songs.add(song);
     }
-
-
     // Queue a song to play next (add to the front of the playlist)
     public void queueSong(Song song) {
         songs.add(0, song);

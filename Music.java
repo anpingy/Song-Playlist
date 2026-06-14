@@ -53,7 +53,7 @@ public class Music {
         }
     }
     public void skip() {
-          try {
+        try {
         while (currentSong.isActive() && !Thread.currentThread().isInterrupted()) {
         System.out.print(""); // Prevent busy-waiting
     }
