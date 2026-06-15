@@ -1,19 +1,19 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class userInterface extends JFrame {
+public class userInterface extends JFrame { //inherits from JFrame
 
     private boolean empty = true;
 
     public userInterface(Playlist playlist) {
-
+        //window setup
         setTitle("My Playlist");
         setSize(500, 320);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 
         JLabel label = new JLabel("My Playlist Controls");
-
+        //Buttons are created
         JButton playButton    = new JButton("Play");
         JButton showButton    = new JButton("Show");
         JButton shuffleButton = new JButton("Shuffle");
@@ -23,7 +23,7 @@ public class userInterface extends JFrame {
         JButton removeButton  = new JButton("Remove Song");
         JButton searchButton  = new JButton("Search Song");
         JButton exitButton    = new JButton("Exit");
-
+        //Buttons are hidden until a song is added
         playButton.setVisible(false);
         shuffleButton.setVisible(false);
         skipButton.setVisible(false);
@@ -31,7 +31,7 @@ public class userInterface extends JFrame {
         removeButton.setVisible(false);
         searchButton.setVisible(false);
 
-        // PLAY
+        //Play
         playButton.addActionListener(e -> {
             playlist.playPlaylist();
             if (playlist.songs.isEmpty()) {
@@ -41,7 +41,7 @@ public class userInterface extends JFrame {
             }
         });
 
-        // SHOW
+        //show
         showButton.addActionListener(e -> {
             StringBuilder sb = new StringBuilder("<html><b>--- My Playlist ---</b><br>");
             if (playlist.songs.isEmpty()) {
@@ -56,17 +56,17 @@ public class userInterface extends JFrame {
             JOptionPane.showMessageDialog(this, sb.toString(), "Playlist", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        // SHUFFLE
+        //shuffle
         shuffleButton.addActionListener(e -> {
             playlist.shufflePlaylist();
             JOptionPane.showMessageDialog(this, "Playlist shuffled!", "Shuffle", JOptionPane.INFORMATION_MESSAGE);
         });
 
-        // SKIP
+        //skip
         skipButton.addActionListener(e -> playlist.skipPlaylist());
 
 
-        // ADD SONG
+        //add song
         addButton.addActionListener(e -> {
             Song chosen = pickSong("Add Song", "Choose a song to add:");
             if (chosen != null) {
@@ -74,6 +74,7 @@ public class userInterface extends JFrame {
                     empty = false;
                     playButton.setVisible(true);
                 }
+                //Make all buttons visible once a song is added
                 shuffleButton.setVisible(true);
                 skipButton.setVisible(true);
                 queueButton.setVisible(true);
@@ -84,7 +85,7 @@ public class userInterface extends JFrame {
             }
         });
 
-        // QUEUE SONG
+        //Queue song
         queueButton.addActionListener(e -> {
             Song chosen = pickSong("Queue Song", "Choose a song to queue:");
             if (chosen != null) {
@@ -94,11 +95,11 @@ public class userInterface extends JFrame {
         });
 
         //Search Song
-
         searchButton.addActionListener(e -> {
             String searchTitle = JOptionPane.showInputDialog(this, "Confirm if the song exists in your playlist:", "Search Song", JOptionPane.QUESTION_MESSAGE);
-                if (searchTitle != null) {
+                if (searchTitle != null) { //Check if user inputted a title or cancelled the dialog
                     boolean found = false;
+                    // Loop through the playlist to find a song with the matching title (linear search)
                     for (int i = 0; i < playlist.songs.size(); i++) {
                         Song song = playlist.songs.get(i);
                         if (song.getTitle().equalsIgnoreCase(searchTitle)) {
@@ -107,21 +108,23 @@ public class userInterface extends JFrame {
                             break;
                         }
                     }
-                    if (!found) {
+                    if (!found) { //Inform user if the song is not found in the playlist
                         JOptionPane.showMessageDialog(this, "Song not found in the playlist.", "Search Result", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
         });
-        // REMOVE SONG
+        //remove song
         removeButton.addActionListener(e -> {
-            if (playlist.songs.isEmpty()) {
+            if (playlist.songs.isEmpty()) { //Informs user if playlist is empty (no dropbox shows)
                 JOptionPane.showMessageDialog(this, "The playlist is empty.", "Remove Song", JOptionPane.WARNING_MESSAGE);
                 return;
             }
+            // Create an array of song titles for the dropdown
             String[] titles = new String[playlist.songs.size()];
             for (int i = 0; i < playlist.songs.size(); i++) {
                 titles[i] = (i + 1) + ". " + playlist.songs.get(i).getTitle();
             }
+            //Dropdown is shown
             String chosen = (String) JOptionPane.showInputDialog(
                 this,
                 "Choose a song to remove:",
@@ -137,6 +140,8 @@ public class userInterface extends JFrame {
             JOptionPane.showMessageDialog(this, "Removed track " + index, "Remove Song", JOptionPane.INFORMATION_MESSAGE);
         });
         exitButton.addActionListener(e -> System.exit(0));
+
+        //Add components to the frame
         add(label);
         add(playButton);
         add(skipButton);
@@ -151,7 +156,7 @@ public class userInterface extends JFrame {
         setVisible(true);
     }
 
-    // Reusable song picker — avoids duplicating the options list
+    //Song selection method that prevents duplification
     private Song pickSong(String title, String prompt) {
         String[] options = {
             "Anytime, Always - Wallows",
@@ -167,7 +172,7 @@ public class userInterface extends JFrame {
         );
 
         if (choice == null) return null;
-
+        //returns a new Song object based on the user's choice
         return switch (choice) {
             case "Anytime, Always - Wallows"               -> new Song("Anytime, Always", "Wallows", "Anytime, Always by Wallows.wav");
             case "Buttons - Lyn Lapid"                     -> new Song("Buttons", "Lyn Lapid", "Buttons by Lyn Lapid.wav");

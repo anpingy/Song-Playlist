@@ -1,9 +1,7 @@
-
-
 public class Main {
     public static void main(String[] args) {
         Playlist playlist = new Playlist("My Playlist");
-        // Start GUI (connected to SAME playlist)
+        //Initialize the user interface with the playlist
         new userInterface(playlist);
 }
 }
