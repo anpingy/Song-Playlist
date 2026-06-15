@@ -3,11 +3,9 @@ import javax.swing.*;
 
 public class userInterface extends JFrame {
 
-    private Playlist playlist;
     private boolean empty = true;
 
     public userInterface(Playlist playlist) {
-        this.playlist = playlist;
 
         setTitle("My Playlist");
         setSize(500, 320);
@@ -34,14 +32,14 @@ public class userInterface extends JFrame {
         searchButton.setVisible(false);
 
         // PLAY
-    playButton.addActionListener(e -> {
-        playlist.playPlaylist();
-        if (playlist.songs.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "The playlist is empty.", "Play", JOptionPane.WARNING_MESSAGE);
-        } else {
-            playButton.setVisible(false);
-        }
-    });
+        playButton.addActionListener(e -> {
+            playlist.playPlaylist();
+            if (playlist.songs.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "The playlist is empty.", "Play", JOptionPane.WARNING_MESSAGE);
+            } else {
+                playButton.setVisible(false);
+            }
+        });
 
         // SHOW
         showButton.addActionListener(e -> {
